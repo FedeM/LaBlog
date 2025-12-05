@@ -75,6 +75,7 @@ $update = function () {
 @stop
 
 @section('content')
+@section('plugins.Summernote', true)
 <div>
     @volt
     <form wire:submit="update">
@@ -84,12 +85,7 @@ $update = function () {
                 <x-adminlte-input name="title" label="Título" placeholder="Escribe el título del post" wire:model="title" />
 
                 {{-- Content --}}
-                @php
-                $config = [
-                    "height" => "300",
-                ];
-                @endphp
-                <x-adminlte-text-editor name="content" label="Contenido" igroup-size="sm" :config="$config" wire:model="content"/>
+                <x-adminlte-text-editor name="content" label="Contenido" igroup-size="sm"  wire:model="content"/>
 
                 {{-- Categories --}}
                 <x-adminlte-select2 id="categories" name="selectedCategories" label="Categorías" igroup-size="md" :config="['placeholder' => 'Selecciona categorías...']" multiple wire:model="selectedCategories">

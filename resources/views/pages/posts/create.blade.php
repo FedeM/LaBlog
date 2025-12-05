@@ -69,14 +69,7 @@ $save = function () {
                 <x-adminlte-input name="title" label="Título" placeholder="Escribe el título del post" wire:model="title" />
 
                 {{-- Content --}}
-                <div class="form-group">
-                     @php
-                    $config = [
-                        "height" => "300",
-                    ];
-                    @endphp
-                    <x-adminlte-text-editor name="content" label="Contenido" igroup-size="lg" :config="$config" wire:model="content"/>
-                </div>
+                <x-adminlte-text-editor name="content" label="Contenido" igroup-size="lg" wire:model="content"/>
 
                 {{-- Categories --}}
                 <x-adminlte-select2 id="categories" name="selectedCategories" label="Categorías" igroup-size="md" :config="['placeholder' => 'Selecciona categorías...']" multiple wire:model="selectedCategories">
