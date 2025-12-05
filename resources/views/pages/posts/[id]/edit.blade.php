@@ -62,61 +62,66 @@ $update = function () {
 
 ?>
 
-@volt
-
 @extends('adminlte::page')
 
 @section('title', 'Editar Post')
 
 @section('content_header')
+<div>
+    @volt
     <h1>Editar Post: {{ $title }}</h1>
+    @endvolt
+</div>
 @stop
 
 @section('content')
-<form wire:submit="update">
-    <div class="card">
-        <div class="card-body">
-            {{-- Title --}}
-            <x-adminlte-input name="title" label="Título" placeholder="Escribe el título del post" wire:model="title" />
+<div>
+    @volt
+    <form wire:submit="update">
+        <div class="card">
+            <div class="card-body">
+                {{-- Title --}}
+                <x-adminlte-input name="title" label="Título" placeholder="Escribe el título del post" wire:model="title" />
 
-            {{-- Content --}}
-            @php
-            $config = [
-                "height" => "300",
-            ];
-            @endphp
-            <x-adminlte-text-editor name="content" label="Contenido" igroup-size="sm" :config="$config" wire:model="content"/>
+                {{-- Content --}}
+                @php
+                $config = [
+                    "height" => "300",
+                ];
+                @endphp
+                <x-adminlte-text-editor name="content" label="Contenido" igroup-size="sm" :config="$config" wire:model="content"/>
 
-            {{-- Categories --}}
-            <x-adminlte-select2 id="categories" name="selectedCategories" label="Categorías" igroup-size="md" :config="['placeholder' => 'Selecciona categorías...']" multiple wire:model="selectedCategories">
-                <x-slot name="prependSlot">
-                    <div class="input-group-text bg-gradient-info">
-                        <i class="fas fa-tags"></i>
-                    </div>
-                </x-slot>
-                @foreach($allCategories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </x-adminlte-select2>
+                {{-- Categories --}}
+                <x-adminlte-select2 id="categories" name="selectedCategories" label="Categorías" igroup-size="md" :config="['placeholder' => 'Selecciona categorías...']" multiple wire:model="selectedCategories">
+                    <x-slot name="prependSlot">
+                        <div class="input-group-text bg-gradient-info">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                    </x-slot>
+                    @foreach($allCategories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </x-adminlte-select2>
 
-            {{-- Tags --}}
-            <x-adminlte-select2 id="tags" name="selectedTags" label="Etiquetas" igroup-size="md" :config="['placeholder' => 'Selecciona etiquetas...']" multiple wire:model="selectedTags">
-                <x-slot name="prependSlot">
-                    <div class="input-group-text bg-gradient-purple">
-                        <i class="fas fa-hashtag"></i>
-                    </div>
-                </x-slot>
-                @foreach($allTags as $tag)
-                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                @endforeach
-            </x-adminlte-select2>
+                {{-- Tags --}}
+                <x-adminlte-select2 id="tags" name="selectedTags" label="Etiquetas" igroup-size="md" :config="['placeholder' => 'Selecciona etiquetas...']" multiple wire:model="selectedTags">
+                    <x-slot name="prependSlot">
+                        <div class="input-group-text bg-gradient-purple">
+                            <i class="fas fa-hashtag"></i>
+                        </div>
+                    </x-slot>
+                    @foreach($allTags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+                </x-adminlte-select2>
 
+            </div>
+            <div class="card-footer">
+                <x-adminlte-button class="btn-flat" type="submit" label="Actualizar Post" theme="success" icon="fas fa-lg fa-save"/>
+                <a href="{{ url('posts') }}" class="btn btn-secondary">Cancelar</a>
+            </div>
         </div>
-        <div class="card-footer">
-            <x-adminlte-button class="btn-flat" type="submit" label="Actualizar Post" theme="success" icon="fas fa-lg fa-save"/>
-            <a href="{{ url('posts') }}" class="btn btn-secondary">Cancelar</a>
-        </div>
-    </div>
-</form>
+    </form>
+    @endvolt
+</div>
 @stop
-@endvolt

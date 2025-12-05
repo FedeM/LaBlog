@@ -13,7 +13,6 @@ mount(function() {
 });
 
 ?>
-@volt
     @extends('adminlte::page')
 
     @section('title', 'Dashboard')
@@ -23,6 +22,9 @@ mount(function() {
     @stop
 
     @section('content')
-        <p>Welcome to this beautiful admin panel.</p>
+    <div>
+        @volt
+            <p>Welcome to this beautiful admin panel.</p>
+        @endvolt
+    </div>
     @stop
-@endvolt
